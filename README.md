@@ -27,6 +27,39 @@
    DATAPARC_SITE_ABBREVIATION=your_site_abbreviation  # 사이트 약어 (예: 'CTC')
    DATAPARC_TIMEZONE=your_timezone           # 시간대 (예: 'UTC', 'Asia/Seoul')
    ```
+## 통신 테스트 방법
+DataParc 시스템과의 통신을 테스트하기 위해 다음 단계를 따르십싣오
+
+1. 프로젝트 루트 디렉토리에서 Python 인터프리터를 실행합니다.
+   ```bash
+   python
+   ```
+
+2. DataParcConnector 클래스를 임포트하고 인스턴스를 생성합니다.
+   ```python
+   from dataparc.data_parc_connector import DataParcConnector
+   connector = DataParcConnector()
+   ```
+3. check_connection() 메서드를 사용하여 연결을 테스트합니다.
+   ```python
+   connection_status = connector.check_connection()
+   print(f"Connection status: {connection_status}")
+   ```
+
+4. 연결이 성공적으로 이루어졌다면, 간단한 데이터 조회를 시도해볼 수 있습니다.
+   ```python
+   # 예: 최신 태그 값 조회
+   latest_values = connector.fetch_latest_values(["SampleTag1", "SampleTag2"])
+   print(latest_values)
+   ```
+5. 오류가 발생하면 오류 메시지를 확인하고 .env 파일의 설정이 올바른지 다시 한 번 확인해야 합니다.
+   
+6. 네트워크 연결 문제가 의심되는 경우, 서버에 대한 ping 테스트를 수행할 수 있습니다.
+   ```bash
+   ping your_server_address
+   ```
+7. 방화벽 설정이 의심되는 경우, 네트워크 관리자에게 문의하여 필요한 포트가 열려 있는지 확인해야합니다.
+
 
 ## 사용 방법
 ```python
